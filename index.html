@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Our Valentine Universe ❤️</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Music -->
+  <audio id="bg-music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Music Control -->
+  <div id="music-control" onclick="toggleMusic(event)">
+    ▶ Play
+  </div>
+
+  <!-- Floating Blur Circles -->
+  <div class="blur-circle circle1"></div>
+  <div class="blur-circle circle2"></div>
+  <div class="blur-circle circle3"></div>
+
+  <!-- Sparkles -->
+  <div class="sparkle-container"></div>
+
+  <!-- Welcome Page -->
+  <div id="welcome-page" class="page active">
+    <h1>Hey Love ❤️<br>Welcome to the World of Love</h1>
+    <p>Are you excited?</p>
+
+    <div class="buttons">
+      <button class="btn-soft" onclick="wrongAnswer()">Yes 💖</button>
+      <button class="btn-bold" onclick="correctAnswer()">Too Much 😳</button>
+    </div>
+  </div>
+
+  <!-- Calendar Page -->
+  <div id="calendar-page" class="page">
+    <h1>Valentine Week With You ❤️</h1>
+
+    <div class="calendar">
+      <div class="card" onclick="openRoseDay()">🌹 Rose Day</div>
+      <div class="card" onclick="openProposeDay()">💍 Propose Day</div>
+      <div class="card" onclick="openChocolateDay()">🍫 Chocolate Day</div>
+      <div class="card" onclick="openTeddyDay()">🧸 Teddy Day</div>
+      <div class="card" onclick="openPromiseDay()">🤞 Promise Day</div>
+      <div class="card" onclick="openHugDay()">🤗 Hug Day</div>
+      <div class="card" onclick="openKissDay()">😘 Kiss Day</div>
+      <div class="card special" onclick="openValentineDay()">❤️ Valentine's Day</div>
+    </div>
+  </div>
+
+  <!-- Rose Day Modal -->
+  <div id="rose-modal" class="modal">
+    <div class="modal-content rose-modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+
+      <h2>🌹 Rose Day</h2>
+
+      <p id="rose-message"></p>
+
+      <div class="rose-container">
+        <div class="rose"></div>
+      </div>
+
+      <p id="rose-second-line" class="hidden-line">
+        And maybe… there’s a real one waiting for you too 🌹😉
+      </p>
+
+      <div id="placard" class="placard hidden-line">
+        <p id="placard-text"></p>
+      </div>
+
+    </div>
+    </div>
+  <!-- Propose Day Modal -->
+  <div id="propose-modal" class="modal">
+    <div class="modal-content propose-content">
+      <span class="close" onclick="closeProposeModal()">&times;</span>
+
+      <h2 class="propose-heading"> Propose Day</h2>
+
+      <p id="propose-message"></p>
+
+      <div id="love-question" class="hidden-line">
+        <p class="love-text">I love you baby ❤️<br>Do you love me?</p>
+
+        <div class="love-buttons">
+          <button class="love-yes" onclick="yesResponse()">YES 💖</button>
+          <button class="love-no" id="no-button">NO 🙈</button>
+        </div>
+      </div>
+
+      <p id="propose-final" class="hidden-line final-line"></p>
+
+    </div>
+  </div>
+<!-- Chocolate Day Modal -->
+<div id="chocolate-modal" class="modal">
+  <div class="modal-content day-content">
+    <div class="day-bg chocolate-bg"></div>
+    <span class="close" onclick="closeChocolateModal()">&times;</span>
+
+    <h2 class="day-heading">🍫 Chocolate Day</h2>
+
+    <p id="chocolate-message"></p>
+
+    <button id="choco-btn" class="day-btn hidden-line" onclick="chocolateResponse()">
+      Taste Approved 😌
+    </button>
+
+    <p id="chocolate-final" class="hidden-line final-line"></p>
+  </div>
+</div>
+<!-- Teddy Day Modal -->
+<div id="teddy-modal" class="modal">
+  <div class="modal-content day-content">
+    <div class="day-bg teddy-bg"></div>
+    <span class="close" onclick="closeTeddyModal()">&times;</span>
+
+    <h2 class="day-heading">🧸 Teddy Day</h2>
+
+    <p id="teddy-message"></p>
+
+    <button id="hug-btn" class="day-btn hidden-line" onclick="teddyResponse()">
+      Virtual Hug 🤗
+    </button>
+
+    <p id="teddy-final" class="hidden-line final-line"></p>
+  </div>
+</div>
+<!-- Promise Day Modal -->
+<div id="promise-modal" class="modal">
+  <div class="modal-content day-content">
+    <div class="day-bg promise-bg"></div>
+    <span class="close" onclick="closePromiseModal()">&times;</span>
+
+    <h2 class="day-heading">🤞 Promise Day</h2>
+
+    <p id="promise-message"></p>
+
+    <button id="promise-btn" class="day-btn hidden-line" onclick="promiseResponse()">
+      Deal 🤝
+    </button>
+
+    <p id="promise-final" class="hidden-line final-line"></p>
+  </div>
+</div>
+
+<!-- Hug Day Modal -->
+<div id="hug-modal" class="modal">
+  <div class="modal-content day-content">
+    <div class="day-bg hug-bg"></div>
+    <span class="close" onclick="closeHugModal()">&times;</span>
+
+    <h2 class="day-heading">🤗 Hug Day</h2>
+
+    <p id="hug-message"></p>
+
+    <button id="hugday-btn" class="day-btn hidden-line" onclick="hugResponse()">
+      Come Here 🤗
+    </button>
+
+    <p id="hug-final" class="hidden-line final-line"></p>
+  </div>
+</div>
+
+<!-- Kiss Day Modal -->
+<div id="kiss-modal" class="modal">
+  <div class="modal-content day-content">
+    <div class="day-bg kiss-bg"></div>
+    <span class="close" onclick="closeKissModal()">&times;</span>
+
+    <h2 class="day-heading">😘 Kiss Day</h2>
+
+    <p id="kiss-message"></p>
+
+    <button id="kiss-btn" class="day-btn hidden-line" onclick="kissResponse()">
+      Accepted 😌
+    </button>
+
+    <p id="kiss-final" class="hidden-line final-line"></p>
+  </div>
+</div>
+
+<!-- Valentine's Day Modal -->
+<div id="valentine-modal" class="modal">
+  <div class="modal-content day-content">
+    <div class="day-bg valentine-bg"></div>
+    <span class="close" onclick="closeValentineModal()">&times;</span>
+
+    <h2 class="day-heading">❤️ Valentine's Day</h2>
+
+    <p id="valentine-message"></p>
+
+    <button id="valentine-btn" class="day-btn hidden-line" onclick="valentineResponse()">
+      One More Thing…
+    </button>
+
+    <p id="valentine-final" class="hidden-line final-line"></p>
+  </div>
+</div>
+
+
+  <!-- Custom Popup -->
+  <div id="custom-popup" class="popup">
+    <div class="popup-box">
+      <h3>Oops 😌</h3>
+      <p>Wrong answer... try again baby ❤️</p>
+      <button onclick="closePopup()">Okay</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
