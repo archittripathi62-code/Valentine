@@ -529,6 +529,38 @@ p {
   position: relative;
   z-index: 1;
 }
+.kiss-animation-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 2;
+}
+
+
+.kiss {
+  position: absolute;
+  font-size: 28px;
+  animation: flyKiss 2.5s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes flyKiss {
+
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-200px) translateX(var(--x)) scale(1.2);
+    opacity: 0;
+  }
+}
 
 
 /* #music-control::before {

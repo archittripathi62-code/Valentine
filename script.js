@@ -284,7 +284,7 @@ function openTeddyDay() {
 
   const message = [
     "Life gets messy sometimes…",
-    "But having you makes it softer.",
+    "But you are there to make it better.",
     "",
     "If I could, I’d hug you right now 🤍"
   ];
@@ -316,6 +316,10 @@ function openPromiseDay() {
     "To choose you.",
     "To annoy you.",
     "To stand by you.",
+    "To make you laugh.",
+    "To tease you.",
+    "To support you.",
+    "And make you happy.",
     "",
     "And maybe steal your fries sometimes 😌"
   ];
@@ -341,9 +345,14 @@ function openHugDay() {
   const message = [
     "Some days are heavy…",
     "Some days are chaotic…",
-    "But when I’m with you…",
+    "Some days we fight with the world…",
+    "Some days with each other…",
+    "Some days we just need to escape it all…",
+    "And give each other a long hug.",
     "",
-    "Everything feels lighter."
+    "Everything feels lighter.",
+    "And sleep peacefully in each other’s arms.",
+    "",
   ];
 
   typeDayMessage("hug-message", message, "hugday-btn");
@@ -351,7 +360,7 @@ function openHugDay() {
 
 function hugResponse() {
   const finalText = document.getElementById("hug-final");
-  finalText.innerHTML = "Consider this your official long warm hug 🤗❤️";
+  finalText.innerHTML = "When things get tough, I’m here for you 🤗❤️";
   finalText.classList.add("show-line");
 }
 
@@ -362,22 +371,76 @@ function closeHugModal() {
 
 function openKissDay() {
   reduceVolume();
-  document.getElementById("kiss-modal").style.display = "flex";
+
+  const modal = document.getElementById("kiss-modal");
+  const finalText = document.getElementById("kiss-final");
+  const container = document.getElementById("kiss-animation-container");
+
+  modal.style.display = "flex";
+
+  // reset state
+  finalText.innerHTML = "";
+  finalText.classList.remove("show-line");
+
+  container.innerHTML = "";
 
   const message = [
     "Okay listen…",
-    "This one might make you blush.",
+    "I have a news for you.",
     "",
-    "Sending you a virtual kiss 😘"
+    "Scientist found something sweeter than chocolate.",
+    "And it’s your kiss ❤️",
+    "",
+    "A kiss a day keeps the doctor away, they say.",
+    "So I guess we are safe from doctors forever 😌"
   ];
 
   typeDayMessage("kiss-message", message, "kiss-btn");
 }
 
+
 function kissResponse() {
+
+  const container = document.getElementById("kiss-animation-container");
+  const button = document.getElementById("kiss-btn");
   const finalText = document.getElementById("kiss-final");
-  finalText.innerHTML = "That one was just a trailer 😌❤️";
-  finalText.classList.add("show-line");
+
+  // clear previous kisses if any
+  container.innerHTML = "";
+
+  // get button position
+  const btnRect = button.getBoundingClientRect();
+  const containerRect = container.getBoundingClientRect();
+
+  const startX = btnRect.left - containerRect.left + btnRect.width / 2;
+  const startY = btnRect.top - containerRect.top;
+
+  // create flying kisses
+  for (let i = 0; i < 8; i++) {
+
+    const kiss = document.createElement("div");
+    kiss.className = "kiss";
+    kiss.innerHTML = "💋";
+
+    kiss.style.left = startX + "px";
+    kiss.style.top = startY + "px";
+
+    kiss.style.setProperty("--x", (Math.random() * 200 - 100) + "px");
+
+    kiss.style.animationDelay = (i * 0.15) + "s";
+
+    container.appendChild(kiss);
+
+    setTimeout(() => kiss.remove(), 3000);
+  }
+
+  // show final text after animation
+  finalText.classList.remove("show-line");
+
+  setTimeout(() => {
+    finalText.innerHTML = "😘❤️😘❤️😘❤️😘❤️😘❤️😘❤️ ";
+    finalText.classList.add("show-line");
+  }, 1200);
 }
 
 function closeKissModal() {
